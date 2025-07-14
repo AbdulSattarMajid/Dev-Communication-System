@@ -1,9 +1,9 @@
 import React from "react";
 import { LogIn, Eye } from "lucide-react";
-import logo from "../Images/Logo.png"; // Adjust the path as necessary
+import logo from "../Images/Logo.png"; 
 const Login = () => {
   return (
-    <div className="login-container relative overflow-hidden min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="login-container relative overflow-hidden min-h-screen flex items-center justify-center bg-violet-500">
       {/* Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <span className="text-[8rem] font-bold text-gray-200 opacity-20 select-none">
@@ -12,7 +12,7 @@ const Login = () => {
       </div>
 
       {/* Login Card */}
-      <div className="relative z-10 bg-white p-8 max-w-sm w-full shadow-lg rounded-md">
+      <div className="relative z-10 bg-white  p-8 max-w-sm w-full shadow-lg rounded-md">
         {/* Header */}
         <div className="text-center mb-6">
           {/* Logo */}
@@ -75,7 +75,6 @@ const Login = () => {
               Password
             </label>
 
-            {/* Eye Icon (not functional yet) */}
             <button
               type="button"
               aria-label="Show password"
