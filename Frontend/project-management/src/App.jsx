@@ -1,15 +1,27 @@
-import React from "react";
-// import Sidebar from "./Sidebar";
-import Login from "./Authentication/Signin";
-import Sidebar from "./Authentication/Sidebar";
-import TopNavbar from "./Authentication/TopNavbar";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Sidebar from "./Authentication/Sidebar"
+import TopNavbar from "./Authentication/TopNavbar"
+import ProjectsDetails from "./Components/ProjectsDetails"
+import ProjectPage from './Components/ProjectPage'
+
 export default function App() {
   return (
-    <div className="flex flex-col">
-      <TopNavbar/>
+    <Router>
+      <div className="h-screen">
+        {/* Sidebar stays fixed */}
+        <Sidebar />
 
-      <Sidebar/>
+        {/* Main content offset by sidebar width */}
+        <div className="ml-64 flex flex-col h-full ">
+          <TopNavbar />
 
-    </div>
-  );
+          {/* Main page content changes based on route */}
+          <Routes>
+            <Route path="/" element={<ProjectsDetails />} />
+            <Route path="/projects/:id" element={<ProjectPage />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  )
 }

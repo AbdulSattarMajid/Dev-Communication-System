@@ -26,8 +26,8 @@ export default function Sidebar() {
 
     return (
         <div
-            className="fixed h-screen overflow-y-auto text-white px-0 py-5"
-            style={{ width: '250px', backgroundColor: '#3949ab' }}
+            className="fixed h-screen w-64 overflow-y-auto text-white px-0 py-5"
+            style={{ backgroundColor: '#3949ab' }}
         >
             {/* Logo & user info */}
             <div className="px-4 mb-5">
