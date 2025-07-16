@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // <-- Import Link
 import logo from "../Images/Logo.png";
 import {
     MessageSquare,
@@ -11,7 +12,7 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-    { label: 'Projects', icon: <MessageSquare />, link: '#' },    
+    { label: 'Projects', icon: <MessageSquare />, link: '/' }, // Changed link to "/"
     { label: 'Dashboard', icon: <Home />, link: '#' },
     { label: 'Check In/Out', icon: <Clock />, link: '#' },
     { label: 'Time Table', icon: <Calendar />, link: '#' },
@@ -22,7 +23,7 @@ const navItems = [
 ];
 
 export default function Sidebar() {
-    const [activeIndex, setActiveIndex] = useState(0); // Default active item
+    const [activeIndex, setActiveIndex] = useState(0);
 
     return (
         <div
@@ -48,24 +49,38 @@ export default function Sidebar() {
 
             {/* Navigation */}
             <nav className="flex flex-col gap-1 px-4">
-                {navItems.map((item, idx) => (
-                    <a
-                        key={idx}
-                        href={item.link}
-                        onClick={() => setActiveIndex(idx)}
-                        className={`
-                            flex items-center gap-2 px-3 py-2 rounded text-sm transition
-                            ${
-                                activeIndex === idx
-                                    ? 'bg-gradient-to-r from-black via-indigo-900 to-blue-500 text-white'
-                                    : 'bg-[#3949ab] hover:bg-gradient-to-r hover:from-black hover:via-indigo-900 hover:to-blue-500 hover:text-white'
-                            }
-                        `}
-                    >
-                        {React.cloneElement(item.icon, { size: 18 })}
-                        {item.label}
-                    </a>
-                ))}
+                {navItems.map((item, idx) => {
+                    const baseClass = `
+                        flex items-center gap-2 px-3 py-2 rounded text-sm transition
+                        ${
+                            activeIndex === idx
+                                ? 'bg-gradient-to-r from-black via-indigo-900 to-blue-500 text-white'
+                                : 'bg-[#3949ab] hover:bg-gradient-to-r hover:from-black hover:via-indigo-900 hover:to-blue-500 hover:text-white'
+                        }
+                    `;
+
+                    return item.label === 'Projects' ? (
+                        <Link
+                            to={item.link}
+                            key={idx}
+                            onClick={() => setActiveIndex(idx)}
+                            className={baseClass}
+                        >
+                            {React.cloneElement(item.icon, { size: 18 })}
+                            {item.label}
+                        </Link>
+                    ) : (
+                        <a
+                            key={idx}
+                            href={item.link}
+                            onClick={() => setActiveIndex(idx)}
+                            className={baseClass}
+                        >
+                            {React.cloneElement(item.icon, { size: 18 })}
+                            {item.label}
+                        </a>
+                    );
+                })}
 
                 {/* Logout Button */}
                 <a

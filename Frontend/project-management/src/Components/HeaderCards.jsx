@@ -27,7 +27,7 @@ const HeaderCards = ({ projects, openForm }) => {
           >
             <div className="flex justify-between items-center mb-3">
               <span className="text-gray-700 font-medium">
-                {['Projects', 'Active Task', 'Teams', 'Productivity'][i]}
+                {['Projects', 'Active Task', 'Channels', 'Productivity'][i]}
               </span>
               <div className="bg-purple-100 p-2 rounded">
                 <Icon className="h-5 w-5 text-purple-600" />
