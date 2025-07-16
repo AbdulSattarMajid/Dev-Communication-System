@@ -10,6 +10,7 @@ export default function App() {
     <Router>
       <div className="h-screen flex">
         {/* Sidebar stays fixed */}
+        <Sidebar />
 
         {/* Main content wrapper */}
         <div className="ml-64 flex flex-col w-full h-screen overflow-hidden">
