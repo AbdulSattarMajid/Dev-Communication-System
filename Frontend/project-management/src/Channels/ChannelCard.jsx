@@ -1,6 +1,5 @@
-// Components/Channels/ChannelCard.jsx
-import { MoreVertical } from "lucide-react"
-import { Link } from "react-router-dom"
+import { MoreVertical } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ChannelCard = ({
   channel,
@@ -10,44 +9,51 @@ const ChannelCard = ({
   onEdit,
   onDelete,
 }) => (
-  <div className="relative group">
-    {/* Make the whole card clickable via Link */}
+  <div className="relative m-2">
     <Link
       to={`/projects/${projectId}/channels/${channel.id}`}
-      className=" bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-300 shadow-md rounded-xl w-full p-4 flex flex-col items-center hover:shadow-xl transition-transform duration-200"
+      className="block bg-white border border-gray-300 rounded-xl shadow p-3 w-full h-[120px] hover:shadow-md transition duration-200"
     >
-      <div className="text-yellow-500">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-12 w-12 mb-2"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M10 4H2v16h20V6H12l-2-2z" />
-        </svg>
+      {/* Icon */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 text-indigo-500 mb-2"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M10 4H2v16h20V6H12l-2-2z" />
+      </svg>
+
+      {/* Channel Name */}
+      <div className="text-sm font-semibold text-gray-800 truncate mb-0.5">
+        #{channel.name}
       </div>
-      <div className="text-sm font-semibold text-gray-700 truncate w-full text-center">
-        {channel.name}
-      </div>
+
+      {/* Description (truncated) */}
+      {channel.description && (
+        <p className="text-xs text-gray-600 truncate">
+          {channel.description}
+        </p>
+      )}
     </Link>
 
-    {/* 3-dots dropdown */}
+    {/* Dropdown Button */}
     <button
       onClick={() =>
         setOpenDropdownId(openDropdownId === channel.id ? null : channel.id)
       }
-      className="absolute top-2 right-2 p-1 rounded hover:bg-gray-200"
+      className="absolute top-2 right-2 p-1 rounded hover:bg-gray-200 z-10"
     >
       <MoreVertical size={18} />
     </button>
 
-    {/* Dropdown menu */}
+    {/* Dropdown Menu */}
     {openDropdownId === channel.id && (
-      <div className="absolute top-10 right-2 z-10 bg-white border shadow rounded w-28 text-sm">
+      <div className="absolute top-10 right-2 z-20 bg-white border shadow rounded w-28 text-sm">
         <button
           onClick={() => {
-            onEdit(channel.id)
-            setOpenDropdownId(null)
+            onEdit(channel.id);
+            setOpenDropdownId(null);
           }}
           className="w-full px-3 py-2 text-left hover:bg-gray-100"
         >
@@ -55,8 +61,8 @@ const ChannelCard = ({
         </button>
         <button
           onClick={() => {
-            onDelete(channel.id)
-            setOpenDropdownId(null)
+            onDelete(channel.id);
+            setOpenDropdownId(null);
           }}
           className="w-full px-3 py-2 text-left text-red-600 hover:bg-gray-100"
         >
@@ -65,6 +71,6 @@ const ChannelCard = ({
       </div>
     )}
   </div>
-)
+);
 
-export default ChannelCard
+export default ChannelCard;

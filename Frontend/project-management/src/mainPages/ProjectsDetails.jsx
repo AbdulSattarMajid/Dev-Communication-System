@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import HeaderCards from './HeaderCards'
-import ProjectFormModal from './ProjectFormModal'
-import ProjectsTable from './ProjectsTable'
+import HeaderCards from '../Components/HeaderCards'
+import ProjectFormModal from '../Components/ProjectFormModal'
+import ProjectsTable from '../Components/ProjectsTable'
 
 const ProjectsDetails = () => {
 

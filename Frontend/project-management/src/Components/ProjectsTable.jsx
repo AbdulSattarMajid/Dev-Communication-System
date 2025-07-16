@@ -14,7 +14,7 @@ const ProjectsTable = ({ projects, handleEdit, handleDelete, handleMarkCompleted
         <div className="mt-4 px-[3%] pb-10">
             <div className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
                 <table className="w-full text-left table-auto">
-                    <thead className="bg-gray-100 text-gray-600 text-sm">
+                    <thead className="bg-gradient-to-r from-neutral-800 via-indigo-900 to-blue-500 text-white bg-opacity-90 text-sm">
                         <tr>
                             <th className="px-6 py-3 font-medium">Project Name</th>
                             <th className="px-6 py-3 font-medium">Creation Date</th>

@@ -1,7 +1,7 @@
 // Components/Projects/ProjectPage.jsx
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import ProjectInfo from "./ProjectInfo"
+import ProjectInfo from "../Components/ProjectInfo"
 import CreateChannelForm from "../Channels/CreateChannelForm"
 import ChannelCard from "../Channels/ChannelCard"
 import AddMemberForm from "../Channels/AddMemberForm"
@@ -12,7 +12,9 @@ const ProjectPage = () => {
   const [channelName, setChannelName] = useState("")
   const [channels, setChannels] = useState([])
   const [openDropdownId, setOpenDropdownId] = useState(null)
-  const [members, setMembers] = useState([]) // 👈 Members state
+  const [members, setMembers] = useState([])
+  const [channelDescription, setChannelDescription] = useState("")
+
 
   // Load project from localStorage
   useEffect(() => {
@@ -41,25 +43,36 @@ const ProjectPage = () => {
     const newChannel = {
       id: Date.now(),
       name: channelName.trim(),
-      isAdmin: true, // default admin true
+      description: channelDescription.trim(),
+      isAdmin: true,
     }
 
     const updated = [newChannel, ...channels]
     setChannels(updated)
     setChannelName("")
+    setChannelDescription("")
     updateLocalStorageChannels(updated)
   }
 
+
   // Edit Channel
-  const handleEditChannel = (channelId) => {
-    const name = prompt("Enter new channel name:")
-    if (!name) return
-    const updated = channels.map((ch) =>
-      ch.id === channelId ? { ...ch, name } : ch
-    )
-    setChannels(updated)
-    updateLocalStorageChannels(updated)
-  }
+const handleEditChannel = (channelId) => {
+  const existingChannel = channels.find((ch) => ch.id === channelId)
+  const newName = prompt("Enter new channel name:", existingChannel.name)
+  const newDescription = prompt("Enter new description (optional):", existingChannel.description || "")
+
+  if (!newName) return
+
+  const updated = channels.map((ch) =>
+    ch.id === channelId
+      ? { ...ch, name: newName.trim(), description: newDescription.trim() }
+      : ch
+  )
+
+  setChannels(updated)
+  updateLocalStorageChannels(updated)
+}
+
 
   // Delete Channel
   const handleDeleteChannel = (channelId) => {
@@ -85,8 +98,12 @@ const ProjectPage = () => {
       <CreateChannelForm
         channelName={channelName}
         setChannelName={setChannelName}
+        channelDescription={channelDescription}
+        setChannelDescription={setChannelDescription}
         handleAddChannel={handleAddChannel}
       />
+
+
 
       {/* Channel List */}
       <div className="bg-white rounded-lg shadow p-6">

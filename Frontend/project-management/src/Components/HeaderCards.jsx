@@ -23,7 +23,7 @@ const HeaderCards = ({ projects, openForm }) => {
         {[Briefcase, List, Users, Target].map((Icon, i) => (
           <div
             key={i}
-            className="bg-white rounded-xl shadow-lg p-6 w-[24%] h-[10.5rem]"
+            className="bg-white border-[1px] border-indigo-950 rounded-xl shadow-lg p-6 w-[24%] h-[10.5rem]"
           >
             <div className="flex justify-between items-center mb-3">
               <span className="text-gray-700 font-medium">

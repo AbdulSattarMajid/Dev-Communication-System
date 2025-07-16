@@ -1,11 +1,8 @@
-import React from 'react'
-
 function TopNavbar() {
   return (
-    <div className="bg-blue-400 h-[4rem]">
+<div className="bg-blue-400 h-[4rem] px-6 flex items-center justify-between">
 
     </div>
   )
 }
-
-export default TopNavbar
+export default TopNavbar;
